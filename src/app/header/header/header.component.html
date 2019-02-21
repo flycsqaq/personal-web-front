@@ -1,0 +1,12 @@
+<header>
+  <nav>
+    <ul>
+      <li *ngFor="let n of nav">
+        <button mat-button [routerLink]="n.link">{{ n.hans }}</button>
+      </li>
+      <li>
+        <button mat-button>登录</button>
+      </li>
+    </ul>
+  </nav>
+</header>
