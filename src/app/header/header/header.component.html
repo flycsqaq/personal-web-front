@@ -4,8 +4,14 @@
       <li *ngFor="let n of nav">
         <button mat-button [routerLink]="n.link">{{ n.hans }}</button>
       </li>
-      <li>
-        <button mat-button>登录</button>
+      <li *ngIf="!cache['jwtToken']">
+        <button mat-button (click)="openLoginDialog()">登录</button>
+      </li>
+      <li *ngIf="cache['jwtToken']">
+        <button mat-button [matMenuTriggerFor]="logout">{{ cache['username'] }} </button>
+        <mat-menu #logout="matMenu">
+          <button mat-menu-item (click)="openLogoutDialog()">登出</button>
+        </mat-menu>
       </li>
     </ul>
   </nav>

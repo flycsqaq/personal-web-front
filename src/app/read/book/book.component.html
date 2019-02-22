@@ -1,3 +1,15 @@
-<p>
-  book works!
-</p>
+<app-filter [filters]="filters" [name]="filterName"></app-filter>
+<app-order [orders]="orders"></app-order>
+<app-add></app-add>
+<div>
+  <app-book-detail *ngFor="let book of books" [book]="book">
+
+  </app-book-detail>
+</div>
+
+<mat-paginator 
+              [length]="books.length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="pageEvent = $event">
+</mat-paginator>

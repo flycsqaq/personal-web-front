@@ -1,0 +1,9 @@
+<div class="filter">
+  <mat-form-field>
+    <mat-select [placeholder]="name" [(value)]="selectedFilter">
+      <mat-option *ngFor="let option of filters" [value]="option.value">
+        {{option.hans}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

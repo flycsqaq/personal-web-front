@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header/header.component';
+import { HeaderComponent, LoginDialog, LogoutDialog } from './header/header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MaterialModule } from './material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,23 +14,32 @@ import { PlanModule } from './plan/plan.module';
 import { httpInterceptorProviders } from './core/interceptors';
 import { ApiService, ArticleService, CategoryService, BookService, InspirationService, CompletedService, PersonalService, WebService, UserService, TokenService } from './core/services';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { FormsModule } from '../../node_modules/@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    LoginDialog,
+    LogoutDialog,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    // SharedModule,
     HttpClientModule,
     MaterialModule,
     HomeModule,
     BlogModule,
     ReadModule,
-    PlanModule
+    PlanModule,
+  ],
+  entryComponents: [
+    LoginDialog,
+    LogoutDialog
   ],
   providers: [
     httpInterceptorProviders,
