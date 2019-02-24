@@ -1,6 +1,9 @@
 <div class="filter">
   <mat-form-field>
     <mat-select [placeholder]="name" [(value)]="selectedFilter">
+        <mat-option [value]=0>
+          全部
+        </mat-option>
       <mat-option *ngFor="let option of filters" [value]="option.value">
         {{option.hans}}
       </mat-option>

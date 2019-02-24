@@ -8,10 +8,22 @@ import { Article_GET } from '../../core/models';
 })
 export class ArticleDetailComponent implements OnInit {
   @Input() article: Article_GET
+  @Input() categories
+  category: string
   constructor() { }
 
   ngOnInit() {
-    console.log(this.article)
   }
-
+  ngOnChanges() {
+    this.handleGetCategory()
+  }
+  handleGetCategory() {
+    if (!this.categories) {
+      return
+    }
+    const category = this.categories.find(item => item.id === this.article.category)
+    if (category) {
+      this.category = category.name
+    }
+  }
 }

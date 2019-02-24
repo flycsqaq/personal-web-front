@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Option } from '../../core/models/data/options';
 
 @Component({
@@ -8,10 +8,18 @@ import { Option } from '../../core/models/data/options';
 })
 export class OrderComponent implements OnInit {
   @Input() orders: Option[]
-  selectedOrder: any
+  @Output() orderSelect = new EventEmitter()
+  selectedOrder: string = 'id' 
+  lastOrder: string = 'id'
   constructor() { }
 
   ngOnInit() {
   }
-
+  ngDoCheck() {
+    if (this.selectedOrder === this.lastOrder) {
+      return
+    }
+    this.lastOrder = this.selectedOrder
+    this.orderSelect.emit(this.selectedOrder)
+  }
 }

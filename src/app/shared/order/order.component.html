@@ -1,6 +1,9 @@
 <div class="order">
   <mat-form-field>
     <mat-select placeholder="排序" [(value)]="selectedOrder">
+      <mat-option value="id">
+        id
+      </mat-option>
       <mat-option *ngFor="let option of orders" [value]="option.value">
         {{option.hans}}
       </mat-option>

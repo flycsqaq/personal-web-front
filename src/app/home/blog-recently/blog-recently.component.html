@@ -1,8 +1,7 @@
-<p>
-  blog-recently works!
-</p>
 <div>
   <div *ngFor="let article of recently_articles">
-    {{ article.id }}
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.abstract }}</p>
+    <time>{{ article.created }}</time>
   </div>
 </div>

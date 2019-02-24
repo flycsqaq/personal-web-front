@@ -1,3 +1,11 @@
-<p>
-  article-detail works!
-</p>
+<section>
+  <img>
+  <div class="article">
+    <h1>{{ article.title }}</h1>
+    <p *ngIf="category" 
+      [class]="category"
+      [class.category]="true" >{{ category }}</p>
+    <p>{{ article.abstract }}</p>
+    <time>{{ article.created }}</time>
+  </div>
+</section>

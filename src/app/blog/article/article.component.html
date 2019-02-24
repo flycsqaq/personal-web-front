@@ -1,14 +1,20 @@
-<app-filter [filters]="filters" [name]="filterName"></app-filter>
-<app-order [orders]="orders"></app-order>
-<app-add></app-add>
-<div class="articles">
-  <app-article-detail *ngFor="let article of articles" [article]="article">
-  </app-article-detail>
-</div>
+<div class="article-container">
+  <app-filter [filters]="filters" [name]="filterName" (filterSelect)="changeFilter($event)"></app-filter>
+  <app-order [orders]="orders" (orderSelect)="changeOrder($event)"></app-order>
+  <app-add></app-add>
+  <div class="articles">
+    <app-article-detail 
+      *ngFor="let article of articles" 
+      [article]="article"
+      [categories]="categories">
+    </app-article-detail>
+  </div>
 
-<mat-paginator 
-              [length]="length"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="pageSizeOptions"
-              (page)="pageEvent = $event">
-</mat-paginator>
+  <mat-paginator 
+    [length]="articleShowService.articlesFilter.length"
+    [pageSize]="articleShowService.pageSize['_value']"
+    [pageIndex]="articleShowService.pageIndex['_value']"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent = handlePage($event)">
+  </mat-paginator>
+</div>

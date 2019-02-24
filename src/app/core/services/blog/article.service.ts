@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { Article_GET, Article_POST } from '../../models';
 import { ApiService } from '../api.service';
+import { ArticleShowService } from '../../../blog/article/article-show.service';
 
 @Injectable(
   // {
@@ -15,7 +16,7 @@ export class ArticleService {
   private base_url = 'api/blog/article/'
   private isInit: boolean = false
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
   ) { }
 
   get(): void {
