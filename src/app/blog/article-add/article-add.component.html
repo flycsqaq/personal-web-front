@@ -1,0 +1,30 @@
+<div class="edit">
+  <!-- <button mat-button (click)="goBack()">back</button> -->
+  <form class="example-form">
+    <mat-form-field class="text">
+      <input matInput placeholder="title" [(ngModel)]="article.title" name="title">
+    </mat-form-field>
+    <mat-form-field class="text">
+      <mat-select placeholder="category" [(value)]="article.category" name="category">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="textarea">
+      <textarea  matInput placeholder="abstract" [(ngModel)]="article.abstract" name="abstract"></textarea>
+    </mat-form-field>
+    <mat-form-field class="textarea">
+      <textarea matInput placeholder="reference" [(ngModel)]="article.reference" name="reference"></textarea>
+    </mat-form-field>
+    <md-editor name="Content"  
+      [(ngModel)]="article.body" 
+      [height]="'700px'" 
+      [mode]="mode" 
+      [options]="options" 
+      required 
+      maxlength="500">
+    </md-editor>
+  </form>
+  <button mat-button (click)="post()">上传</button>
+</div>

@@ -16,7 +16,7 @@ export class FilterComponent implements OnInit {
 
   ngOnInit() {
   }
-  ngDoCheck() {
+  ngDoCheck() { 
     if (this.selectedFilter === this.lastFilter) {
       return
     }

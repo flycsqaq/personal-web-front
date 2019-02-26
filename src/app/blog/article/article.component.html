@@ -1,7 +1,7 @@
 <div class="article-container">
   <app-filter [filters]="filters" [name]="filterName" (filterSelect)="changeFilter($event)"></app-filter>
   <app-order [orders]="orders" (orderSelect)="changeOrder($event)"></app-order>
-  <app-add></app-add>
+  <app-add-button [routerPath]="routerPath"></app-add-button>
   <div class="articles">
     <app-article-detail 
       *ngFor="let article of articles" 

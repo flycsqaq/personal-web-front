@@ -15,6 +15,7 @@ import { ArticleShowService } from './article-show.service';
   ]
 })
 export class ArticleComponent implements OnInit {
+  routerPath = 'add'
   articles: Article_GET[] = [] 
   categories: Category_GET[] = []
   filters: Option[] = []

@@ -15,7 +15,8 @@ import { httpInterceptorProviders } from './core/interceptors';
 import { ApiService, ArticleService, CategoryService, BookService, InspirationService, CompletedService, PersonalService, WebService, UserService, TokenService } from './core/services';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { FormsModule } from '../../node_modules/@angular/forms';
-
+import { MarkdownModule, MarkedOptions } from '../../node_modules/ngx-markdown';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,8 @@ import { FormsModule } from '../../node_modules/@angular/forms';
     BlogModule,
     ReadModule,
     PlanModule,
+    LMarkdownEditorModule,
+    MarkdownModule.forRoot()
   ],
   entryComponents: [
     LoginDialog,
