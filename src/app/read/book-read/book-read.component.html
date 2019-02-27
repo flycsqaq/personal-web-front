@@ -1,0 +1,12 @@
+<div class="container">
+  <section *ngIf="book">
+    <div>
+      <button mat-button>修改</button>
+    </div>
+  </section>
+  <section *ngFor="let ins of inspirations">
+    <button mat-button>修改</button>
+    {{ ins.title }}
+    {{ ins.isWrite }}
+  </section>
+</div>

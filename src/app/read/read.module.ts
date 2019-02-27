@@ -5,17 +5,21 @@ import { SharedModule } from '../shared/shared.module';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { CommonModule } from '../../../node_modules/@angular/common';
 import { MaterialModule } from '../material/material.module';
+import { BookReadComponent } from './book-read/book-read.component';
+import { BookAddComponent } from './book-add/book-add.component';
+import { FormsModule } from '../../../node_modules/@angular/forms';
 
 @NgModule({
   imports: [
     ReadRoutingModule,
     SharedModule,
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   declarations: [
     BookComponent, 
-    BookDetailComponent
+    BookDetailComponent, BookReadComponent, BookAddComponent
   ]
 })
 export class ReadModule {}

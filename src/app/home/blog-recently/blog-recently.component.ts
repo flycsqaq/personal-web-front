@@ -19,7 +19,11 @@ export class BlogRecentlyComponent implements OnInit {
     this.articleService.get()
     this.subscription = this.articleService.articles$
       .subscribe(
-        articles => this.recently_articles = sort_by(articles, 'created'),
+        articles => this.recently_articles = sort_by(articles, 'created').slice(0, 5).map(article => {
+          const _article = article
+          _article.link = `blog/${article.id}`
+          return _article
+        }),
         error => console.log(error)
       )
   }

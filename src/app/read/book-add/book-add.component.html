@@ -1,0 +1,30 @@
+<div class="container">
+  <form>
+    <mat-form-field class="text">
+      <input matInput placeholder="name" [(ngModel)]="book.name" name="name">
+    </mat-form-field>
+    <mat-form-field class="text">
+      <input matInput type="number" placeholder="page_total" [(ngModel)]="book.page_total" name="page_total">
+    </mat-form-field>
+    <mat-form-field class="text">
+      <input matInput type="number" placeholder="page_read" [(ngModel)]="book.page_read" name="page_read">
+    </mat-form-field>
+    <mat-form-field class="text">
+      <input matInput [matDatepicker]="start" placeholder="start" [(ngModel)]="book.start" name="start">
+      <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+      <mat-datepicker #start (dateChange)="startChange($event)" (select)="startChange($event)"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="text">
+      <input matInput [matDatepicker]="anticipated_end" placeholder="anticipated_end" [(ngModel)]="book.anticipated_end" name="end">
+      <mat-datepicker-toggle matSuffix [for]="anticipated_end"></mat-datepicker-toggle>
+      <mat-datepicker #anticipated_end></mat-datepicker>
+    </mat-form-field>
+    <mat-slide-toggle
+    [checked]="book.isCompleted"
+    (change)="change($event)">
+        Slide me!
+    </mat-slide-toggle>
+  </form>
+  <button mat-button (click)="post()">上传</button>
+  <button mat-button (click)="init()">重置</button>
+</div>

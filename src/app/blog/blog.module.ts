@@ -9,6 +9,8 @@ import { MaterialModule } from '../material/material.module';
 import { LMarkdownEditorModule } from '../../../node_modules/ngx-markdown-editor';
 import { FormsModule } from '../../../node_modules/@angular/forms';
 import { ArticleAddComponent } from './article-add/article-add.component';
+import { ArticleReadComponent } from './article-read/article-read.component';
+import { MarkdownModule } from '../../../node_modules/ngx-markdown';
 @NgModule({
   imports: [
     BlogRoutingModule,
@@ -16,12 +18,14 @@ import { ArticleAddComponent } from './article-add/article-add.component';
     CommonModule,
     MaterialModule,
     LMarkdownEditorModule,
+    MarkdownModule.forRoot(),
     FormsModule
   ],
   declarations: [
     ArticleComponent,
     ArticleDetailComponent,
     ArticleAddComponent,
+    ArticleReadComponent,
   ]
 })
 export class BlogModule {}

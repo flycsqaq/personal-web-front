@@ -1,7 +1,7 @@
 <section>
   <img>
   <div class="article">
-    <h1>{{ article.title }}</h1>
+    <h1 [routerLink]="article.id">{{ article.title }}</h1>
     <p *ngIf="category" 
       [class]="category"
       [class.category]="true" >{{ category }}</p>

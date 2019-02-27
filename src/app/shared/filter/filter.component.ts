@@ -10,8 +10,8 @@ export class FilterComponent implements OnInit {
   @Input() filters: Option[]
   @Input() name: string
   @Output() filterSelect = new EventEmitter<any>()
-  selectedFilter: number = 0
-  lastFilter: number = 0
+  selectedFilter: any = 0
+  lastFilter: any = 0
   constructor() { }
 
   ngOnInit() {

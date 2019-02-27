@@ -1,7 +1,7 @@
 <div>
-  <div *ngFor="let article of recently_articles">
-    <h1>{{ article.title }}</h1>
+  <section *ngFor="let article of recently_articles">
+    <h1 [routerLink]="article.link">{{ article.title }}</h1>
     <p>{{ article.abstract }}</p>
     <time>{{ article.created }}</time>
-  </div>
+  </section>
 </div>

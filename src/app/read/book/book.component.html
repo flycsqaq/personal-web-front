@@ -1,15 +1,18 @@
-<app-filter [filters]="filters" [name]="filterName"></app-filter>
-<app-order [orders]="orders"></app-order>
-<app-add-button></app-add-button>
-<div>
-  <app-book-detail *ngFor="let book of books" [book]="book">
+<div class="container">
+  <app-filter [filters]="filters" [name]="filterName" (filterSelect)="changeFilter($event)"></app-filter>
+  <app-order [orders]="orders" (orderSelect)="changeOrder($event)"></app-order>
+  <app-add-button [routerPath]="routerPath"></app-add-button>
+  <div>
+    <app-book-detail *ngFor="let book of books" [book]="book">
 
-  </app-book-detail>
+    </app-book-detail>
+  </div>
+
+  <mat-paginator 
+    [length]="bookShowService.booksFilter.length"
+    [pageSize]="bookShowService.pageSize['_value']"
+    [pageIndex]="bookShowService.pageIndex['_value']"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent = handlePage($event)">
+  </mat-paginator>
 </div>
-
-<mat-paginator 
-              [length]="books.length"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="pageSizeOptions"
-              (page)="pageEvent = $event">
-</mat-paginator>
