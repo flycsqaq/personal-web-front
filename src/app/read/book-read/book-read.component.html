@@ -1,12 +1,78 @@
 <div class="container">
   <section *ngIf="book">
-    <div>
-      <button mat-button>修改</button>
+    <div *ngIf="!isWrite">
+      <div *ngIf="userService.cache['jwtToken']">
+        <button mat-button (click)="isWrite=true">修改</button>
+        <button mat-button (click)="isAdd=true">添加ins</button>
+      </div>
+      <div class="book-detail">
+        <h1>{{ book.name }}</h1>
+        <meter
+          min=0
+          [max]="book.page_total"
+          [value]="book.page_read">
+        </meter>
+        <strong>{{ book.page_read }} /  {{ book.page_total }}</strong>
+        <p>
+          <i>开始时间：<time>{{ book.start }}</time></i>
+          <i>预期结束时间：<time>{{ book.anticipated_end }}</time></i>
+          <i>上次阅读时间：<time>{{ book.last_read_time }}</time></i>
+          <strong>{{ book.isCompleted? '已完成': '未完成' }}</strong>
+        </p>
+      </div>
+    </div>
+    <div *ngIf="isWrite">
+      <form>
+        <mat-form-field class="text">
+          <input matInput placeholder="name" [(ngModel)]="book.name" name="name">
+        </mat-form-field>
+        <mat-form-field class="text">
+          <input matInput type="number" placeholder="page_total" [(ngModel)]="book.page_total" name="page_total">
+        </mat-form-field>
+        <mat-form-field class="text">
+          <input matInput type="number" placeholder="page_read" [(ngModel)]="book.page_read" name="page_read">
+        </mat-form-field>
+        <mat-form-field class="text">
+          <input matInput [matDatepicker]="start" placeholder="start" [(ngModel)]="book.start" name="start">
+          <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+          <mat-datepicker #start (dateChange)="startChange($event)" (select)="startChange($event)"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="text">
+          <input matInput [matDatepicker]="anticipated_end" placeholder="anticipated_end" [(ngModel)]="book.anticipated_end" name="end">
+          <mat-datepicker-toggle matSuffix [for]="anticipated_end"></mat-datepicker-toggle>
+          <mat-datepicker #anticipated_end></mat-datepicker>
+        </mat-form-field>
+        <mat-slide-toggle
+        [checked]="book.isCompleted"
+        (change)="change($event)">
+            Slide me!
+        </mat-slide-toggle>
+      </form>
+      <button mat-button (click)="put()">保存</button>
+      <button mat-button (click)="cancel()">取消</button>
     </div>
   </section>
-  <section *ngFor="let ins of inspirations">
-    <button mat-button>修改</button>
-    {{ ins.title }}
-    {{ ins.isWrite }}
+  <section *ngIf="isAdd">
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="title" [(ngModel)]="inspiration.title" name="title">
+      </mat-form-field>
+      <md-editor
+        name="Content"  
+        [(ngModel)]="inspiration.body" 
+        [height]="'300px'" 
+        [mode]="mode" 
+        [options]="options" 
+        required 
+        maxlength="99999">
+      </md-editor>
+    </form>
+    <button mat-button (click)="postIns()">上传</button>
+    <button mat-button (click)="initIns()">重置</button>
+    <button mat-button (click)="isAdd=false">取消</button>
   </section>
+  <app-inspiration-read 
+    *ngFor="let ins of inspirations"
+    [inspiration]="ins">
+  </app-inspiration-read>
 </div>

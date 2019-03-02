@@ -1,0 +1,26 @@
+<section *ngIf="!isWrite">
+  <button mat-button (click)="edit()" *ngIf="userService.cache['jwtToken']">修改</button>
+  <h1>{{ inspiration.title }}</h1>
+  <markdown>
+    {{ inspiration.body }}
+  </markdown>
+</section>
+<section *ngIf="isWrite">
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="title" [(ngModel)]="ins.title" name="title">
+    </mat-form-field>
+    <md-editor
+      name="Content"  
+      [(ngModel)]="ins.body" 
+      [height]="'300px'" 
+      [mode]="mode" 
+      [options]="options" 
+      required 
+      maxlength="99999">
+    </md-editor>
+  </form>
+  <button mat-button (click)="put()">保存</button>
+  <button mat-button (click)="initIns()">重置</button>
+  <button mat-button (click)="cancel()">取消</button>
+</section>

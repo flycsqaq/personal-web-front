@@ -10,7 +10,7 @@ import { User, User_SAVE } from '../../models';
   // }
 )
 export class UserService {
-
+  cache = window.localStorage
   constructor(
     private apiService: ApiService,
     private tokenService: TokenService

@@ -8,6 +8,9 @@ import { MaterialModule } from '../material/material.module';
 import { BookReadComponent } from './book-read/book-read.component';
 import { BookAddComponent } from './book-add/book-add.component';
 import { FormsModule } from '../../../node_modules/@angular/forms';
+import { InspirationReadComponent } from './inspiration-read/inspiration-read.component';
+import { MarkdownModule } from '../../../node_modules/ngx-markdown';
+import { LMarkdownEditorModule } from '../../../node_modules/ngx-markdown-editor';
 
 @NgModule({
   imports: [
@@ -15,11 +18,13 @@ import { FormsModule } from '../../../node_modules/@angular/forms';
     SharedModule,
     CommonModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    MarkdownModule,
+    LMarkdownEditorModule
   ],
   declarations: [
     BookComponent, 
-    BookDetailComponent, BookReadComponent, BookAddComponent
+    BookDetailComponent, BookReadComponent, BookAddComponent, InspirationReadComponent
   ]
 })
 export class ReadModule {}

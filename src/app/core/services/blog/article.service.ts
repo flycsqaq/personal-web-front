@@ -11,7 +11,7 @@ import { ArticleShowService } from '../../../blog/article/article-show.service';
   // }
 )
 export class ArticleService {
-  private articles: BehaviorSubject<Article_GET[]> = new BehaviorSubject([])
+  public articles: BehaviorSubject<Article_GET[]> = new BehaviorSubject([])
   public articles$ = this.articles.asObservable()
   private base_url = 'api/blog/article/'
   private isInit: boolean = false

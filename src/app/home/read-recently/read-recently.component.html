@@ -1,5 +1,25 @@
 <div>
+  <h1>最近阅读书籍</h1>
   <div *ngFor="let book of recently_books">
-    {{ book.name }}
+    <section>
+      <h1 [routerLink]="book.link">{{ book.name }}</h1>
+      <meter
+        min=0
+        [max]="book.page_total"
+        [value]="book.page_read">
+      </meter>
+      <strong>{{ book.page_read }} /  {{ book.page_total }}</strong>
+      <p>
+        <i>开始时间：<time>{{ book.start }}</time></i>
+        <i>预期结束时间：<time>{{ book.anticipated_end }}</time></i>
+        <i>上次阅读时间：<time>{{ book.last_read_time }}</time></i>
+        <strong>{{ book.isCompleted? '已完成': '未完成' }}</strong>
+      </p>
+      <!-- <div *ngIf="inspirationFirst">
+        <cite>
+          {{ inspirationFirst.title }}
+        </cite>
+      </div> -->
+    </section>
   </div>
 </div>

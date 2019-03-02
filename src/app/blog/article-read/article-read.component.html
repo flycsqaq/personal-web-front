@@ -3,7 +3,7 @@
     <button mat-button *ngIf="cache['jwtToken']" (click)="handleEdit()">编辑</button>
     <article>
       <h1>{{ article.title }}</h1>
-      <p>{{ article.category }}</p>
+      <p>{{ category }}</p>
       <time>{{ article.modified }}</time>
       <p>{{ article.abstract }}</p>
       <markdown>
