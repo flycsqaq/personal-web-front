@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BookService, InspirationService } from '../../core/services';
 import { BehaviorSubject } from '../../../../node_modules/rxjs';
 import { Book_GET } from '../../core/models';
-import { sort_by } from '../../core/fun';
+import { sort_by, reverse_by } from '../../core/fun';
 
 @Injectable(
   // {
@@ -16,6 +16,7 @@ export class BookShowService {
   filter: BehaviorSubject<boolean | number> = new BehaviorSubject(0)
   pageSize: BehaviorSubject<number> = new BehaviorSubject(10)
   pageIndex: BehaviorSubject<number> = new BehaviorSubject(0)
+  public orderMethod: BehaviorSubject<boolean> = new BehaviorSubject(true)
   booksShow: BehaviorSubject<Book_GET[]> = new BehaviorSubject([])
   constructor(
     private bookService: BookService,
@@ -39,11 +40,17 @@ export class BookShowService {
     const booksShow = this.booksFilter
     const pageSize = this.pageSize['_value']
     const pageIndex = this.pageIndex['_value']
+    const orderMethod = this.orderMethod['_value']
     const order = this.order['_value']
     if (booksShow.length === 0) {
       return []
     }
-    const booksOrder = sort_by(booksShow, order)
+    let booksOrder
+    if (orderMethod) {
+      booksOrder = sort_by(booksShow, order)
+    } else {
+      booksOrder = reverse_by(booksShow, order)
+    }
     const start = pageIndex * pageSize
     const end = start + pageSize
     return booksOrder.slice(start, end)
@@ -71,6 +78,7 @@ export class BookShowService {
     this.setOneStream(this.pageIndex)
     this.setOneStream(this.filter, this.handleChangeFilter)
     this.setOneStream(this.order)
+    this.setOneStream(this.orderMethod)
   }
   
 }

@@ -16,7 +16,4 @@ export class AddBUttonComponent implements OnInit {
   ngOnInit() {
     this.cache = window.localStorage
   }
-  handleToPath() {
-    console.log(this.routerPath)
-  }
 }

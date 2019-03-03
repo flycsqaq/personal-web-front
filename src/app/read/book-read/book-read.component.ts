@@ -3,6 +3,8 @@ import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { BookService, InspirationService, UserService } from '../../core/services';
 import { Book_GET, Inspiration_GET, Inspiration_POST } from '../../core/models';
 import { getYMD } from '../../core/fun/date';
+import { FormBuilder } from '../../../../node_modules/@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-book-read',
@@ -12,10 +14,10 @@ import { getYMD } from '../../core/fun/date';
 export class BookReadComponent implements OnInit {
   book: Book_GET
   initBook: string
-  inspiration = {
-    title: '',
-    body: ''
-  }
+  inspiration = this.fb.group({
+    title: ['', Validators.required],
+    body: ['', Validators.required]
+  })
   inspirations: object[] = []
   isWrite: boolean = false
   isAdd: boolean = false
@@ -23,7 +25,8 @@ export class BookReadComponent implements OnInit {
     private route: ActivatedRoute,
     private bookService: BookService,
     private inspirationService: InspirationService,
-    private userService: UserService
+    public userService: UserService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -52,13 +55,13 @@ export class BookReadComponent implements OnInit {
       )
   }
   initIns() {
-    this.inspiration = {
-      title: '',
-      body: ''
-    }
+    this.inspiration = this.fb.group({
+      title: ['', Validators.required],
+      body: ['', Validators.required]
+    })
   }
   postIns() {
-    const { title, body } = this.inspiration
+    const { title, body } = this.inspiration.value
     const ins = {
       title,
       body,

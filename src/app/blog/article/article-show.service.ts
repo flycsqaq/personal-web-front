@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ArticleService } from '../../core/services';
 import { Article_GET } from '../../core/models';
-import { Subscription, Subject, BehaviorSubject } from '../../../../node_modules/rxjs';
-import { sort_by } from '../../core/fun';
+import { BehaviorSubject } from '../../../../node_modules/rxjs';
+import { sort_by, reverse_by } from '../../core/fun';
 
 @Injectable(
   // {
@@ -10,15 +10,14 @@ import { sort_by } from '../../core/fun';
   // }
 )
 export class ArticleShowService {
-  articles: Article_GET[] = []
-  articlesFilter: Article_GET[] = []
+  private articles: Article_GET[] = []
+  public articlesFilter: Article_GET[] = []
   public pageSize: BehaviorSubject<number> = new BehaviorSubject(10)
   public pageIndex: BehaviorSubject<number> = new BehaviorSubject(0)
   public filter: BehaviorSubject<number> = new BehaviorSubject(0)
   public order: BehaviorSubject<string> = new BehaviorSubject('id')
-  public subscription: Subscription
   public articleShowPublic: BehaviorSubject<Article_GET[]> = new BehaviorSubject([])
-  
+  public orderMethod: BehaviorSubject<boolean> = new BehaviorSubject(true)
   constructor(
     private articleSerice: ArticleService
   ) { }
@@ -46,10 +45,16 @@ export class ArticleShowService {
     const pageSize = this.pageSize['_value']
     const pageIndex = this.pageIndex['_value']
     const order = this.order['_value']
+    const orderMethod = this.orderMethod['_value']
     if (articles.length === 0) {
       return []
     }
-    const articlesOrder = sort_by(articles, order)
+    let articlesOrder
+    if (orderMethod) {
+      articlesOrder = sort_by(articles, order)
+    } else {
+      articlesOrder = reverse_by(articles, order)
+    }
     const start = pageIndex * pageSize
     const end = start + pageSize
     return articlesOrder.slice(start, end)
@@ -78,6 +83,7 @@ export class ArticleShowService {
     this.setOneStream(this.pageSize)
     this.setOneStream(this.pageIndex)
     this.setOneStream(this.filter, this.handleChangeFilter)
+    this.setOneStream(this.orderMethod)
     this.setOneStream(this.order)
   }
 }

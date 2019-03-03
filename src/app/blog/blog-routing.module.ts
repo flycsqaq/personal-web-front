@@ -7,15 +7,19 @@ import { ArticleReadComponent } from './article-read/article-read.component';
 const routes: Routes = [
   {
     path: 'blog',
-    component: ArticleComponent
+    component: ArticleComponent,
+    // data: { animation: 'blog' }
+
   },
   {
     path: 'blog/add',
-    component: ArticleAddComponent
+    component: ArticleAddComponent,
+    // data: { animation: '' }
   },
   {
     path: 'blog/:id',
-    component: ArticleReadComponent
+    component: ArticleReadComponent,
+    // data: { animation: '' }
   }
 ]
 

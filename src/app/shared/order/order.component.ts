@@ -12,7 +12,7 @@ export class OrderComponent implements OnInit {
   selectedOrder: string = 'id' 
   lastOrder: string = 'id'
   constructor() { }
-
+  
   ngOnInit() {
   }
   ngDoCheck() {

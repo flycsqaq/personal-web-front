@@ -63,17 +63,9 @@ export class BookComponent implements OnInit {
     this.bookShowService.order.next(e)
     this.bookShowService.pageIndex.next(0)
   }
+  changeOrderMethod(): void {
+    const orderMethod = this.bookShowService.orderMethod
+    orderMethod.next(!orderMethod['_value'])
+  }
 }
-  // initBooks() {
-  //   this.booksSubscription = this.bookService.books$
-  //   .subscribe(
-  //     books => this.books = books,
-  //     error => console.log(error)
-  //   )
-  //   this.inspirationsSubsciption = this.inspirationService.inspirations$
-  //     .subscribe(
-  //       inspirations => this.inspirations = inspirations,
-  //       error => console.log(error)
-  //     )
-  // }
 

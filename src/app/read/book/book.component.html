@@ -1,6 +1,7 @@
 <div class="container">
   <app-filter [filters]="filters" [name]="filterName" (filterSelect)="changeFilter($event)"></app-filter>
   <app-order [orders]="orders" (orderSelect)="changeOrder($event)"></app-order>
+  <button mat-button (click)="changeOrderMethod()">{{ bookShowService.orderMethod['_value']? '正': '倒' }}序</button>
   <app-add-button [routerPath]="routerPath"></app-add-button>
   <div>
     <app-book-detail *ngFor="let book of books" [book]="book">

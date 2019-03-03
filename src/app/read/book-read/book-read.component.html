@@ -2,8 +2,8 @@
   <section *ngIf="book">
     <div *ngIf="!isWrite">
       <div *ngIf="userService.cache['jwtToken']">
-        <button mat-button (click)="isWrite=true">修改</button>
-        <button mat-button (click)="isAdd=true">添加ins</button>
+        <button mat-stroked-button (click)="isWrite=true" color="primary">修改</button>
+        <button mat-button (click)="isAdd=true" color="primary">添加ins</button>
       </div>
       <div class="book-detail">
         <h1>{{ book.name }}</h1>
@@ -48,18 +48,18 @@
             Slide me!
         </mat-slide-toggle>
       </form>
-      <button mat-button (click)="put()">保存</button>
-      <button mat-button (click)="cancel()">取消</button>
+      <button mat-button (click)="put()" color="accent">保存</button>
+      <button mat-button (click)="cancel()" color="warn">取消</button>
     </div>
   </section>
   <section *ngIf="isAdd">
-    <form>
+    <form [formGroup]="inspiration">
       <mat-form-field>
-        <input matInput placeholder="title" [(ngModel)]="inspiration.title" name="title">
+        <input matInput placeholder="title" formControlName="title">
       </mat-form-field>
       <md-editor
         name="Content"  
-        [(ngModel)]="inspiration.body" 
+        formControlName="body"
         [height]="'300px'" 
         [mode]="mode" 
         [options]="options" 
@@ -67,9 +67,9 @@
         maxlength="99999">
       </md-editor>
     </form>
-    <button mat-button (click)="postIns()">上传</button>
+    <button mat-button (click)="postIns()" color="accent">上传</button>
     <button mat-button (click)="initIns()">重置</button>
-    <button mat-button (click)="isAdd=false">取消</button>
+    <button mat-button (click)="isAdd=false" color="warn">取消</button>
   </section>
   <app-inspiration-read 
     *ngFor="let ins of inspirations"

@@ -7,7 +7,7 @@ import { CommonModule } from '../../../node_modules/@angular/common';
 import { MaterialModule } from '../material/material.module';
 // import { MarkdownModule } from 'ngx-markdown'
 import { LMarkdownEditorModule } from '../../../node_modules/ngx-markdown-editor';
-import { FormsModule } from '../../../node_modules/@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '../../../node_modules/@angular/forms';
 import { ArticleAddComponent } from './article-add/article-add.component';
 import { ArticleReadComponent } from './article-read/article-read.component';
 import { MarkdownModule } from '../../../node_modules/ngx-markdown';
@@ -19,7 +19,8 @@ import { MarkdownModule } from '../../../node_modules/ngx-markdown';
     MaterialModule,
     LMarkdownEditorModule,
     MarkdownModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ArticleComponent,

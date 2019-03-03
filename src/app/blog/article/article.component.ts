@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService, CategoryService } from '../../core/services';
+import { CategoryService } from '../../core/services';
 import { Article_GET, Category_GET } from '../../core/models';
-import { Subscription, Subject, BehaviorSubject } from '../../../../node_modules/rxjs';
 import { Option } from '../../core/models/data/options';
 import { PageEvent } from '../../../../node_modules/@angular/material/paginator';
 import { ArticleShowService } from './article-show.service';
@@ -19,7 +18,6 @@ export class ArticleComponent implements OnInit {
   articles: Article_GET[] = [] 
   categories: Category_GET[] = []
   filters: Option[] = []
-  subscription: Subscription
   filterName = '类型'
   orders: Option[] = [
     { value: 'title', hans: '标题' },
@@ -37,9 +35,9 @@ export class ArticleComponent implements OnInit {
     this.articleShowService.get()
     this.categoryService.get()
     this.articleShowService.setStream()
-    this.subscription = this.articleShowService.articleShowPublic
+    this.articleShowService.articleShowPublic
       .subscribe(articles => this.articles = articles, error => console.log(error))
-    this.subscription = this.categoryService.categories$
+    this.categoryService.categories$
       .subscribe(
         categories => {
           this.categories = categories
@@ -53,7 +51,7 @@ export class ArticleComponent implements OnInit {
         error => console.log(error)
       )
     }
-  handlePage(e) {
+  handlePage(e): void {
       this.articleShowService.pageSize.next(e.pageSize)
       this.articleShowService.pageIndex.next(e.pageIndex)
     }
@@ -65,46 +63,8 @@ export class ArticleComponent implements OnInit {
     this.articleShowService.order.next(e)
     this.articleShowService.pageIndex.next(0)
   }
+  changeOrderMethod(): void {
+    const orderMethod = this.articleShowService.orderMethod
+    orderMethod.next(!orderMethod['_value'])
+  }
 }
-  // changeArticles(): void {
-  //   const start = this.pageIndex$ * this.pageSize$
-  //   const end = start + this.pageSize$
-  //   this.showArticles = this.articles.slice(start, end)
-  // }
-  // initBlog() {
-  //   this.subscription = this.pageSize
-  //     .subscribe(
-  //       pageSize => {
-  //         this.pageSize$ = pageSize
-  //         this.changeArticles()
-  //       },
-  //       error => console.log(error)
-  //     )
-  //   this.subscription = this.pageIndex
-  //     .subscribe(
-  //       pageIndex => this.pageIndex$ = pageIndex,
-  //       error => console.log(error)
-  //     )
-  //   this.subscription = this.articleService.articles$
-  //     .subscribe(
-  //       articles => {
-  //         this.articles = articles
-  //         this.changeArticles()
-  //       },
-  //       error => console.log(error)
-  //     )
-  //   this.subscription = this.categoryService.categories$
-  //     .subscribe(
-  //       categories => {
-  //         this.categories = categories
-  //         this.filters = categories.map(category => {
-  //           return {
-  //             value: category.id,
-  //             hans: category.name
-  //           }
-  //         })
-  //       },
-  //       error => console.log(error)
-  //     )
-  // }
-

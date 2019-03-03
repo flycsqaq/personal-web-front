@@ -5,7 +5,7 @@
     <p *ngIf="category" 
       [class]="category"
       [class.category]="true" >{{ category }}</p>
-    <p>{{ article.abstract }}</p>
+    <markdown>{{ article.abstract }}</markdown>
     <time>{{ article.created }}</time>
   </div>
 </section>

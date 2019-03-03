@@ -1,30 +1,38 @@
 <div class="edit">
-  <!-- <button mat-button (click)="goBack()">back</button> -->
-  <form class="example-form">
+  <form class="example-form" [formGroup]="articleForm">
     <mat-form-field class="text">
-      <input matInput placeholder="title" [(ngModel)]="article.title" name="title">
+      <input matInput placeholder="title" formControlName="title">
     </mat-form-field>
     <mat-form-field class="text">
-      <mat-select placeholder="category" [(value)]="article.category" name="category">
+      <mat-select placeholder="category" formControlName="category">
         <mat-option *ngFor="let category of categories" [value]="category.id">
           {{category.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <md-editor name="Content"  
+    formControlName="abstract"
+    [height]="'200px'" 
+    [mode]="mode" 
+    [options]="options" 
+    required 
+    maxlength="99999">
+  </md-editor>
     <mat-form-field class="textarea">
-      <textarea  matInput placeholder="abstract" [(ngModel)]="article.abstract" name="abstract"></textarea>
-    </mat-form-field>
-    <mat-form-field class="textarea">
-      <textarea matInput placeholder="reference" [(ngModel)]="article.reference" name="reference"></textarea>
+      <textarea matInput placeholder="reference" formControlName="reference"></textarea>
     </mat-form-field>
     <md-editor name="Content"  
-      [(ngModel)]="article.body" 
+      formControlName="body"
       [height]="'700px'" 
       [mode]="mode" 
       [options]="options" 
       required 
       maxlength="99999">
     </md-editor>
+    <div>
+      <button mat-button (click)="post()" [disabled]="!articleForm.valid" color="accent">上传</button>
+      <button mat-button (click)="init()">重置</button>
+      <app-go-back-button></app-go-back-button>
+    </div>
   </form>
-  <button mat-button (click)="post()">上传</button>
 </div>

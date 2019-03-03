@@ -7,12 +7,14 @@ import { AddBUttonComponent } from './add-button/add.component';
 import { RouterModule } from '../../../node_modules/@angular/router';
 import { LMarkdownEditorModule } from '../../../node_modules/ngx-markdown-editor';
 import { FormsModule } from '../../../node_modules/@angular/forms';
+import { GoBackButtonComponent } from './go-back-button/go-back-button.component';
 
 @NgModule({
   declarations: [
     FilterComponent,
     OrderComponent,
     AddBUttonComponent,
+    GoBackButtonComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { FormsModule } from '../../../node_modules/@angular/forms';
     FilterComponent,
     OrderComponent,
     AddBUttonComponent,
+    GoBackButtonComponent
   ]
 })
 export class SharedModule {}

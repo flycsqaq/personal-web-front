@@ -1,11 +1,11 @@
 <div class="article-rw" *ngIf="article">
   <div *ngIf="!isWrite">
-    <button mat-button *ngIf="cache['jwtToken']" (click)="handleEdit()">编辑</button>
+    <button mat-stroked-button *ngIf="cache['jwtToken']" (click)="handleEdit()" color="primary">编辑</button>
     <article>
       <h1>{{ article.title }}</h1>
       <p>{{ category }}</p>
       <time>{{ article.modified }}</time>
-      <p>{{ article.abstract }}</p>
+      <markdown>{{ article.abstract }}</markdown>
       <markdown>
         {{ article.body }}
       </markdown>
@@ -13,8 +13,8 @@
     </article>
   </div>  
   <div *ngIf="isWrite">
-      <button mat-button (click)="handlePut()">保存</button>
-      <button mat-button (click)="handleRead()">取消</button>
+      <button mat-button (click)="handlePut()" color="accent">保存</button>
+      <button mat-button (click)="handleRead()" color="warn">取消</button>
     <form class="example-form">
       <mat-form-field class="text">
         <input matInput placeholder="title" [(ngModel)]="article.title" name="title">

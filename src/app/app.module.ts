@@ -17,6 +17,8 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { FormsModule } from '../../node_modules/@angular/forms';
 import { MarkdownModule, MarkedOptions } from '../../node_modules/ngx-markdown';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
+import { AdminModule } from './admin/admin.module';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,8 @@ import { LMarkdownEditorModule } from 'ngx-markdown-editor';
     BlogModule,
     ReadModule,
     PlanModule,
+    SharedModule,
+    // AdminModule,
     LMarkdownEditorModule,
     MarkdownModule.forRoot()
   ],
