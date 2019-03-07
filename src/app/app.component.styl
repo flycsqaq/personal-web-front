@@ -1,0 +1,30 @@
+w = 1200px
+header
+  width: 100%
+  position: fixed
+  top: 0
+  background-color: #1C2327
+  color: #fff
+  z-index: 999
+  button
+    float: left
+    opacity: 0.2
+nav
+  width: w
+  margin: 0 auto
+main
+  margin: 50px auto 20px auto
+  width: w
+  padding: 10px
+  
+@media(max-width: 1500px)
+  nav, main
+    width: 800px
+
+@media(max-width: 1100px)
+  nav, main
+    width: 600px  
+
+@media(max-width: 800px)
+  nav, main
+    width: 90% 

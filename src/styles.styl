@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~normalize.css/normalize.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+backcolor = #E9EAED
+html
+  font-size: 100%
+  body
+    background-color: backcolor
+    color: #222
+    line-height: 1.5
+    height: 100%
+    margin: 0
+.mat-paginator
+  background-color: backcolor
+
+.btn-group
+  display: inline-block
+  font-size: 13.3333px
+
+.form-lengthen
+  width: 800px
+
+
+.fixed-btn-group
+  position: fixed
+  top: 50px
+  left: 80px
+  z-index: 99999
+  display: block
+  .fixed-btn
+    display: block
+    opacity: 0.2
+    transition: all 0.7s linear
+    &:hover
+      opacity: 0.8
+      transition: all 0.7s linear
+
+@media(max-width: 1100px)
+  html
+    font-size: 90%
+  .fixed-btn-group
+    left: 10px
+
+
+// @media(max-width: 950px)
+
+@media(max-width: 800px)
+  html
+    font-size: 80%
+    .fixed-btn-group
+      left: 90%
+      right: 0
+    .form-lengthen
+      width: 80%

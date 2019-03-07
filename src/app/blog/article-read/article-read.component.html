@@ -1,0 +1,57 @@
+<div *ngIf="!isModify">
+  <div class="fixed-btn-group">
+  <button class="fixed-btn" mat-mini-fab color="primary" 
+    *ngIf="userService.isLogin"
+    (click)="isModify=true">修改</button>
+  </div>
+  <article *ngIf="article">
+    <h1>{{ article.title }}</h1>
+    <p>{{ category }}</p>
+    <time>{{ article.modified }}</time>
+    <markdown>{{ article.abstract }}</markdown>
+    <markdown [id]="article.id">
+      {{ article.body }}
+    </markdown>
+    <p>{{ article.reference }}</p>
+  </article>
+</div>
+
+<div *ngIf="isModify" class="modify">
+  <div class="fixed-btn-group">
+    <button mat-mini-fab class="fixed-btn" color="primary" (click)="put()">保存</button>
+    <button mat-mini-fab class="fixed-btn" color="warn" (click)="isModify=false">取消</button>
+  </div>
+  <form class="example-form">
+    <mat-form-field class="form-lengthen">
+      <input matInput placeholder="title" [(ngModel)]="article.title" name="title">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="category" [(value)]="article.category" name="category">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <md-editor
+      name="abstract"  
+      [(ngModel)]="article.abstract" 
+      [height]="'200px'" 
+      [mode]="mode" 
+      [options]="options" 
+      required 
+      maxlength="200">
+    </md-editor>
+    <mat-form-field class="form-lengthen">
+      <textarea matInput placeholder="reference" [(ngModel)]="article.reference" name="reference"></textarea>
+    </mat-form-field>
+    <md-editor
+      name="Content"  
+      [(ngModel)]="article.body" 
+      [height]="'700px'" 
+      [mode]="mode" 
+      [options]="options" 
+      required 
+      maxlength="99999">
+    </md-editor>
+  </form>
+</div>

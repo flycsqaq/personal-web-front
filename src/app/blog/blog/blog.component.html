@@ -1,0 +1,58 @@
+<form [formGroup]="osForm">
+  <mat-form-field>
+    <select 
+      matNativeControl required 
+      placeholder="筛选"
+      formControlName="filter"
+      *ngIf="articleFSService.categories">
+      <option value="0">全部</option>
+      <option 
+        *ngFor="let category of articleFSService.categories" 
+        [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+  </mat-form-field>
+  <mat-form-field>
+    <select 
+      matNativeControl 
+      formControlName="orderName"
+      placeholder="排序">
+      <option 
+        *ngFor="let order of orders"
+        [value]="order.value">
+        {{ order.hans }}
+      </option>
+    </select>
+  </mat-form-field>
+  <mat-form-field>
+    <select 
+      matNativeControl 
+      formControlName="orderMethod"
+      placeholder="排序方式">
+      <option value="positive">正序</option>
+      <option value="reverse">倒序</option>
+    </select>
+  </mat-form-field>
+  <div class="fixed-btn-group" *ngIf="userService.isLogin">
+    <button  class="fixed-btn" mat-mini-fab color="primary" routerLink="add">添加</button>
+  </div>
+</form>
+
+<div>
+  <section *ngFor="let article of articleFSService.articlesShow"
+    [routerLink]="article.id">
+    <h1>{{ article.title }}</h1>
+    <strong>{{ article.categoryName }}</strong>
+    <time>{{ article.created }}</time>
+    <markdown>{{ article.abstract }}</markdown>
+  </section>
+</div>
+<mat-paginator
+  [length]="articleFSService.articlesFilter.length"
+  [pageSize]="articleFSService.pageSize"
+  [pageIndex]="articleFSService.pageIndex"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="pageEvent = handlePage($event)"
+  >
+</mat-paginator>

@@ -1,0 +1,40 @@
+<div>
+  <div class="fixed-btn-group">
+    <button class="fixed-btn" mat-mini-fab color="primary" (click)="post()">上传</button>
+    <button class="fixed-btn" mat-mini-fab color="warn" routerLink="/blog">取消</button>
+  </div>
+  <form [formGroup]="articleForm">
+    <mat-form-field class="form-lengthen">
+      <input matInput placeholder="title" formControlName="title">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="category" formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <md-editor
+      name="abstract"  
+      formControlName="abstract" 
+      [height]="'200px'" 
+      [mode]="mode" 
+      [options]="options" 
+      required 
+      maxlength="200">
+    </md-editor>
+    <mat-form-field class="form-lengthen">
+      <textarea matInput placeholder="reference" formControlName="reference"></textarea>
+    </mat-form-field>
+    <md-editor
+      name="Content"  
+      formControlName="body" 
+      [height]="'700px'" 
+      [mode]="mode" 
+      [options]="options" 
+      required 
+      maxlength="99999">
+    </md-editor>
+  </form>
+</div>
+

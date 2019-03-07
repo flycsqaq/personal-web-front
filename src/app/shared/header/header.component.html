@@ -1,0 +1,16 @@
+<ul [ngSwitch]="userService.isLogin">
+  <li *ngFor="let router of routerLinks"
+    (click)="goLink(router.link)"
+    [class.activeLink]="router.link===activeLink">
+    {{ router.hans }}
+  </li>
+  <li *ngSwitchCase="false">
+    <a (click)="openLoginDialog()">登录</a>
+  </li>
+  <li *ngSwitchDefault>
+    <a [matMenuTriggerFor]="logout">{{ userService.username }}</a>
+    <mat-menu #logout="matMenu">
+      <button mat-menu-item (click)="openLogoutDialog()">登出</button>
+    </mat-menu>
+  </li>
+</ul>
