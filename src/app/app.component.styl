@@ -1,30 +1,45 @@
-w = 1200px
+// @keyframes hello {
+//   0% {
+//     left: 0px
+//     transform: rotate(0deg)
+//     }
+//   25% {
+//     transform: rotate(180deg)
+//     }
+//   50% {
+//     transform: rotate(360deg)
+//       }
+//   75% {
+//     transform: rotate(540deg)
+//     }
+//   100% {
+//     transform: rotate(720deg)
+//     left: calc(100% - 100px)
+//     }
+//   }
 header
-  width: 100%
-  position: fixed
-  top: 0
-  background-color: #1C2327
-  color: #fff
-  z-index: 999
-  button
-    float: left
-    opacity: 0.2
-nav
-  width: w
-  margin: 0 auto
-main
-  margin: 50px auto 20px auto
-  width: w
-  padding: 10px
+    h1
+      position: relative
+      margin: 0
+      background: linear-gradient(to right, red, blue);
+      background-clip: text;
+      color: transparent;
+      display: block
+      width: 100px
+      animation: hello 5s linear 0s 2 alternate 
+
+
+// nav
+//   width: 100%
+//   position: sticky
+//   top: 0
+//   background-color: #1C2327
+//   color: #fff
+//   z-index: 999
+//   button
+//     float: left
+//     opacity: 0.2
+// main
+//   margin: 50px auto 20px auto
+//   padding: 10px
   
-@media(max-width: 1500px)
-  nav, main
-    width: 800px
-
-@media(max-width: 1100px)
-  nav, main
-    width: 600px  
-
-@media(max-width: 800px)
-  nav, main
-    width: 90% 

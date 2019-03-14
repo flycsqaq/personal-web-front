@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '../../node_modules/@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +9,8 @@ import { Location } from '@angular/common';
 export class AppComponent {
   title = 'web';
   constructor(
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {}
   goBack() {
     this.location.back()

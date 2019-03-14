@@ -1,16 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~normalize.css/normalize.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./fy-style.css"
+@import "./person-style.css"
+[grass]::before
+  background rgba(255,255,255,.2)
 
 backcolor = #E9EAED
 html
   font-size: 100%
-  body
-    background-color: backcolor
-    color: #222
-    line-height: 1.5
-    height: 100%
-    margin: 0
+  line-height: 1.5
+//   body
+//     background-color: backcolor
+//     color: #222
+//     line-height: 1.5
+//     height: 100%
+//     margin: 0
 .mat-paginator
   background-color: backcolor
 
@@ -20,6 +25,20 @@ html
 
 .form-lengthen
   width: 800px
+
+markdown
+  line-height: 1.5
+  pre
+    background 	#FFF8DC
+    background-image linear-gradient(rgba(250,250,250,.3), 50%, transparent 0)
+    background-size auto 3em
+    background-position 0 0
+    width 100%
+    overflow: auto
+  ul,ol
+    background-image linear-gradient(rgba(250,250,250,.3), 50%, transparent 0)
+    background-size auto 3em
+    background-position 0 0
 
 
 .fixed-btn-group
@@ -37,19 +56,17 @@ html
       transition: all 0.7s linear
 
 @media(max-width: 1100px)
-  html
-    font-size: 90%
   .fixed-btn-group
     left: 10px
 
 
 // @media(max-width: 950px)
 
-@media(max-width: 800px)
-  html
-    font-size: 80%
-    .fixed-btn-group
+@media(max-width: 1000px)
+  .fixed-btn-group
       left: 90%
       right: 0
     .form-lengthen
       width: 80%
+
+

@@ -1,4 +1,8 @@
-<form [formGroup]="osForm">
+<div *ngIf="loading">
+  loading
+</div>
+<div>
+<form [formGroup]="osForm" *ngIf="!loading">
   <mat-form-field>
     <select 
       matNativeControl required 
@@ -40,7 +44,7 @@
 </form>
 
 <div>
-  <section *ngFor="let article of articleFSService.articlesShow"
+  <section *ngFor="let article of articleFSService.articlesShow" grass
     [routerLink]="article.id">
     <h1>{{ article.title }}</h1>
     <strong>{{ article.categoryName }}</strong>
@@ -56,3 +60,4 @@
   (page)="pageEvent = handlePage($event)"
   >
 </mat-paginator>
+</div>

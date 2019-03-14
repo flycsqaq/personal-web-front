@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit {
   }
   public routerLinks = [
     { link: '/', hans: 'home' },
-    { link: '/blog', hans: '博客' }
+    { link: '/blog', hans: '博客' },
+    { link: '/about-me', hans: 'about me'}
   ]
   activeLink: string = '/'
   constructor(

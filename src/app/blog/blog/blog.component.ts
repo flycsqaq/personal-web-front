@@ -13,6 +13,7 @@ import { UserService } from '../../core/services/user.service';
   providers: [ArticleFSService]
 })
 export class BlogComponent implements OnInit {
+  loading = true
   osForm = this.fb.group({
     filter: [0],
     orderName: ['id'],
@@ -51,6 +52,7 @@ export class BlogComponent implements OnInit {
     this.osForm.valueChanges.subscribe(
       x => this.articleFSService.handleChange(x)
     )
+    this.loading = false
   }
   handlePage(e): void {
     this.articleFSService.handleChangeShow(e)

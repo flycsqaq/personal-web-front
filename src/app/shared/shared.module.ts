@@ -17,12 +17,14 @@ import {
 } from '@angular/material'
 import { LMarkdownEditorModule } from 'ngx-markdown-editor'
 import { RouterModule } from '../../../node_modules/@angular/router';
+import { LoadingComponent } from './loading/loading.component';
 @NgModule({
   declarations: [
     HeaderComponent,
     LoginDialog,
     LogoutDialog,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -56,6 +58,7 @@ import { RouterModule } from '../../../node_modules/@angular/router';
     MatIconModule,
     MatMenuModule,
     HeaderComponent,
+    LoadingComponent,
     MatButtonModule,
     MatDialogModule,
     MatInputModule,

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserResolverService } from './core/services/user-resolve.service';
 import { AppComponent } from './app.component';
+import { MeComponent } from './me/me.component';
 
 const routes: Routes = [
   {
@@ -13,9 +14,17 @@ const routes: Routes = [
     loadChildren: './blog/blog.module#BlogModule'
   },
   {
+    path: 'about-me',
+    component: MeComponent,
+    resolve:{
+      boo: 
+      UserResolverService
+    }
+  },
+  {
     path: '**',
     redirectTo: 'blog'
-  }
+  },
 ];
 
 @NgModule({

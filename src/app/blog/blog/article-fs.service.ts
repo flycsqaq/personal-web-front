@@ -14,10 +14,11 @@ export class ArticleFSService {
   constructor(
   ) {}
   handleChange(payload) {
-    const { filter, orderName, orderMethod } = payload
+    let { filter, orderName, orderMethod } = payload
     if (this.articles.length === 0) {
       return
     }
+    filter = Number(filter)
     if (filter === 0) {
       this.articlesFilter = this.articles
     } else {
@@ -25,7 +26,6 @@ export class ArticleFSService {
         return article.category === Number(filter)
       })
     }
-
     if (orderMethod === 'positive') {
       this.articlesOrder = this.articlesFilter.sort((left, right) => {
         return left[orderName] - right[orderName]

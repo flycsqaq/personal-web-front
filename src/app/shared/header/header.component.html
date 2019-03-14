@@ -1,4 +1,4 @@
-<ul [ngSwitch]="userService.isLogin">
+<ul [ngSwitch]="userService.isLogin" >
   <li *ngFor="let router of routerLinks"
     (click)="goLink(router.link)"
     [class.activeLink]="router.link===activeLink">
