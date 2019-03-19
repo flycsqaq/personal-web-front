@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { Article, Category } from '../../core/models';
 import { ArticleFSService } from './article-fs.service';
-import { FormBuilder } from '../../../../node_modules/@angular/forms';
+import { FormBuilder, FormControl } from '../../../../node_modules/@angular/forms';
 import { PageEvent } from '../../../../node_modules/@angular/material/paginator';
 import { UserService } from '../../core/services/user.service';
 
@@ -14,11 +14,15 @@ import { UserService } from '../../core/services/user.service';
 })
 export class BlogComponent implements OnInit {
   loading = true
-  osForm = this.fb.group({
-    filter: [0],
+  articles: Article[] = []
+  categories: Category[] = []
+
+
+  orderForm = this.fb.group({
     orderName: ['id'],
     orderMethod: ['positive']
   })
+  filterForm = new FormControl('0')
   orders = [
     { value: 'id', hans: '默认' },
     { value: 'title', hans: '标题' },
@@ -26,6 +30,9 @@ export class BlogComponent implements OnInit {
     { value: 'created', hans: '创建时间' },
     { value: 'modified', hans: '最后修改时间' }
   ]
+  pageLength: number
+  pageSize: number =  0
+  pageIndex: number = 0
   pageSizeOptions: number[] = [5, 10, 25, 100]
   pageEvent: PageEvent
   constructor(
@@ -36,25 +43,44 @@ export class BlogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.handleSubscribe()
     this.route.data.subscribe(data => {
-        const ar =  this.articleFSService
-        const categories = data.category
-        ar.categories = categories
-        const articles = data.article.map(art =>{
-          art.categoryName = categories.find(cat => cat.id === art.category).name
-          return art
-        })
-        ar.articles = articles
-        ar.articlesFilter = articles
-        ar.articlesOrder = articles
-        ar.articlesShow = articles
+      const ar =  this.articleFSService
+      const categories = data.category
+      this.categories = categories
+
+      const articles = data.article.map(art =>{
+        art.categoryName = categories.find(cat => cat.id === art.category).name
+        return art
       })
-    this.osForm.valueChanges.subscribe(
-      x => this.articleFSService.handleChange(x)
-    )
+      ar.articlesSource.next(articles)
+      ar.filterSource.next('0')
+      ar.pageSource.next({pageIndex: 0, pageSize: 10})
+      ar.orderSource.next({orderName: 'id', orderMethod: 'positive'})
+    })
     this.loading = false
   }
+  handleSubscribe() {
+    this.filterForm.valueChanges.subscribe(
+      x => this.articleFSService.filterSource.next(x),
+      error => console.log(error)
+    )
+    this.orderForm.valueChanges.subscribe(
+      x => this.articleFSService.orderSource.next(x),
+      err => console.log(err)
+    )
+    const ar =  this.articleFSService
+    ar.articleShow$.subscribe(
+      article => this.articles = article,
+      error => console.log(error)
+    )
+    ar.articleFilter$.subscribe(
+      articles => this.pageLength = articles.length,
+      err => console.log(err)
+    )
+  }
   handlePage(e): void {
-    this.articleFSService.handleChangeShow(e)
+    const { pageIndex, pageSize } = e
+    this.articleFSService.pageSource.next({pageIndex, pageSize})
   }
 }

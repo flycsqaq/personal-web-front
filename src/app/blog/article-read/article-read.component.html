@@ -23,10 +23,10 @@
   </div>
   <form class="example-form">
     <mat-form-field class="form-lengthen">
-      <input matInput placeholder="title" [(ngModel)]="article.title" name="title">
+      <input matInput placeholder="title" [(ngModel)]="articleModify.title" name="title">
     </mat-form-field>
     <mat-form-field>
-      <mat-select placeholder="category" [(value)]="article.category" name="category">
+      <mat-select placeholder="category" [(value)]="articleModify.category" name="category">
         <mat-option *ngFor="let category of categories" [value]="category.id">
           {{category.name}}
         </mat-option>
@@ -34,7 +34,7 @@
     </mat-form-field>
     <md-editor
       name="abstract"  
-      [(ngModel)]="article.abstract" 
+      [(ngModel)]="articleModify.abstract" 
       [height]="'200px'" 
       [mode]="mode" 
       [options]="options" 
@@ -42,11 +42,11 @@
       maxlength="200">
     </md-editor>
     <mat-form-field class="form-lengthen">
-      <textarea matInput placeholder="reference" [(ngModel)]="article.reference" name="reference"></textarea>
+      <textarea matInput placeholder="reference" [(ngModel)]="articleModify.reference" name="reference"></textarea>
     </mat-form-field>
     <md-editor
       name="Content"  
-      [(ngModel)]="article.body" 
+      [(ngModel)]="articleModify.body" 
       [height]="'700px'" 
       [mode]="mode" 
       [options]="options" 

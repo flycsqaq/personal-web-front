@@ -4,6 +4,21 @@ div
   section
     flex: 1 1 500px
     margin 10px
+    
+a
+  color: rgba(10,10,10,.8)
+dl
+  dt
+    display inline
+  dd
+    display inline
+    margin 0 0 0 .3em
+    font-weight bold
+    &+dt::before
+      content '\A'
+      white-space pre
+    &+dd:before
+      content ','
 
 [grass]
   background #CFFCF3

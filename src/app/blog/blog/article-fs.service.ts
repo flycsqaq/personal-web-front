@@ -1,47 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscribable, Subscriber, Subscription } from '../../../../node_modules/rxjs';
-import { Article, Category } from '../../core/models';
-
+import { Observable, Subscribable, Subscriber, Subscription, Subject } from '../../../../node_modules/rxjs';
+import { Article, Category, Page, Order } from '../../core/models';
+import { of, combineLatest } from 'rxjs'
 @Injectable()
 export class ArticleFSService {
-  articles: Article[] = []
-  categories: Category[]
-  articlesFilter: Article[] = []
-  articlesOrder: Article[] = []
-  articlesShow: Article[] = []
-  pageIndex: number = 0
-  pageSize: number = 10
+  articlesSource: Subject<Article[]> = new Subject()
+  filterSource : Subject<string> = new Subject()
+  pageSource: Subject<Page> = new Subject() 
+  orderSource: Subject<Order> = new Subject()
+
+  articles$ = this.articlesSource.asObservable()
+  filter$ = this.filterSource.asObservable()
+  order$ = this.orderSource.asObservable()
+  page$ = this.pageSource.asObservable()
+
+  articleFilter$ = combineLatest(this.articles$,this.filter$, (articles, filter) => {
+    return filter === '0' ? articles: articles.filter(article => article.category === Number(filter))
+  })
+
+  articleShow$ = combineLatest(this.articleFilter$, this.order$, this.page$, (articles, order, page) => {
+    const { pageIndex, pageSize } = page
+    const { orderName, orderMethod } = order
+    const start = pageIndex * pageSize
+    const end = start + pageSize
+    if (orderMethod === 'positive') {
+      return articles.sort((left, right) => left[orderName] - right[orderName]).slice(start, end)
+    }
+    return articles.sort((left, right) => right[orderName] - left[orderName]).slice(start, end)
+  })
   constructor(
   ) {}
-  handleChange(payload) {
-    let { filter, orderName, orderMethod } = payload
-    if (this.articles.length === 0) {
-      return
-    }
-    filter = Number(filter)
-    if (filter === 0) {
-      this.articlesFilter = this.articles
-    } else {
-      this.articlesFilter = this.articles.filter(article => {
-        return article.category === Number(filter)
-      })
-    }
-    if (orderMethod === 'positive') {
-      this.articlesOrder = this.articlesFilter.sort((left, right) => {
-        return left[orderName] - right[orderName]
-      })
-    } else {
-      this.articlesOrder = this.articlesFilter.sort((left, right) => {
-        return right[orderName] - left[orderName]
-      })
-    }
-    this.handleChangeShow()
-  } 
-  handleChangeShow(payload?): void {
-    const pageIndex = payload? payload.pageIndex: this.pageIndex
-    const pageSize = payload? payload.pageSize: this.pageSize
-    const start = pageIndex * pageSize
-    const end = pageSize + start
-    this.articlesShow = this.articlesOrder.slice(start, end)
-  }
 }

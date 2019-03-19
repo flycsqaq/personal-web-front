@@ -2,16 +2,17 @@
   loading
 </div>
 <div>
-<form [formGroup]="osForm" *ngIf="!loading">
+
+<form [formGroup]="orderForm" *ngIf="!loading">
   <mat-form-field>
     <select 
       matNativeControl required 
       placeholder="筛选"
-      formControlName="filter"
-      *ngIf="articleFSService.categories">
+      [formControl]="filterForm"
+      *ngIf="categories">
       <option value="0">全部</option>
       <option 
-        *ngFor="let category of articleFSService.categories" 
+        *ngFor="let category of categories" 
         [value]="category.id">
         {{ category.name }}
       </option>
@@ -44,7 +45,7 @@
 </form>
 
 <div>
-  <section *ngFor="let article of articleFSService.articlesShow" grass
+  <section *ngFor="let article of articles" grass
     [routerLink]="article.id">
     <h1>{{ article.title }}</h1>
     <strong>{{ article.categoryName }}</strong>
@@ -53,9 +54,9 @@
   </section>
 </div>
 <mat-paginator
-  [length]="articleFSService.articlesFilter.length"
-  [pageSize]="articleFSService.pageSize"
-  [pageIndex]="articleFSService.pageIndex"
+  [length]="pageLength"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
   [pageSizeOptions]="pageSizeOptions"
   (page)="pageEvent = handlePage($event)"
   >
