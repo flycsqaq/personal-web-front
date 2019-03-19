@@ -1,7 +1,7 @@
 <div>
   <div class="fixed-btn-group">
     <button class="fixed-btn" mat-mini-fab color="primary" (click)="post()">上传</button>
-    <button class="fixed-btn" mat-mini-fab color="warn" routerLink="/blog">取消</button>
+    <button class="fixed-btn" mat-mini-fab color="warn" routerLink="/blog">坖消</button>
   </div>
   <form [formGroup]="articleForm">
     <mat-form-field class="form-lengthen">
@@ -18,8 +18,6 @@
       name="abstract"  
       formControlName="abstract" 
       [height]="'200px'" 
-      [mode]="mode" 
-      [options]="options" 
       required 
       maxlength="200">
     </md-editor>
@@ -30,8 +28,6 @@
       name="Content"  
       formControlName="body" 
       [height]="'700px'" 
-      [mode]="mode" 
-      [options]="options" 
       required 
       maxlength="99999">
     </md-editor>

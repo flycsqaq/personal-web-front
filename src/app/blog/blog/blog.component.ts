@@ -34,7 +34,6 @@ export class BlogComponent implements OnInit {
   pageSize: number =  0
   pageIndex: number = 0
   pageSizeOptions: number[] = [5, 10, 25, 100]
-  pageEvent: PageEvent
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -79,7 +78,7 @@ export class BlogComponent implements OnInit {
       err => console.log(err)
     )
   }
-  handlePage(e): void {
+  handlePage(e) {
     const { pageIndex, pageSize } = e
     this.articleFSService.pageSource.next({pageIndex, pageSize})
   }
