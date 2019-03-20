@@ -7,7 +7,11 @@ import { ArticleReadComponent } from './article-read/article-read.component';
 import { ArticleAddComponent } from './article-add/article-add.component';
 
 @NgModule({
-  declarations: [BlogComponent, ArticleReadComponent, ArticleAddComponent],
+  declarations: [
+    BlogComponent, 
+    ArticleReadComponent, 
+    ArticleAddComponent
+  ],
   imports: [
     BlogRoutingModule,
     SharedModule,

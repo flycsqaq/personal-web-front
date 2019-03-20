@@ -3,7 +3,6 @@ import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { Article, Category } from '../../core/models';
 import { ArticleFSService } from './article-fs.service';
 import { FormBuilder, FormControl } from '../../../../node_modules/@angular/forms';
-import { PageEvent } from '../../../../node_modules/@angular/material/paginator';
 import { UserService } from '../../core/services/user.service';
 
 @Component({

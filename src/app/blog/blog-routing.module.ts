@@ -32,6 +32,10 @@ const routes: Routes = [
       article: ArticlesResolveService,
       category: CategoriesResolveService
     }
+  },
+  {
+    path: '**',
+    redirectTo: '/blog'
   }
 ];
 

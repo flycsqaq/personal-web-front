@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router
 import { Article, Category } from '../../core/models';
 import { UserService } from '../../core/services/user.service';
 import { ArticleService } from '../../core/services/blog.service';
-import { JsonpCallbackContext } from '../../../../node_modules/@angular/common/http/src/jsonp';
 
 @Component({
   selector: 'app-article-read',
@@ -17,9 +16,7 @@ export class ArticleReadComponent implements OnInit {
   isModify: boolean = false
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,
     private articleService: ArticleService,
-    private router: Router
   ) { }
 
   ngOnInit() {
